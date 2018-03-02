@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zc.cris.join.subclass">
+
+    <class name="Person" table="PERSONS">
+        <id name="id" type="integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="name" type="string">
+        	<column name="NAME"></column>
+        </property>
+        
+        <property name="age" type="java.lang.Integer">
+            <column name="AGE" />
+        </property>
+        
+     	<!-- 使用joined-subclass的方式实现继承关系映射 -->
+     	<joined-subclass name="Student" table="STUDENTS">
+     		<key column="STUDENT_ID"></key>
+     		<property name="school" type="string" column="SCHOOL"></property>
+     	</joined-subclass>
+     	
+    </class>
+    
+</hibernate-mapping>

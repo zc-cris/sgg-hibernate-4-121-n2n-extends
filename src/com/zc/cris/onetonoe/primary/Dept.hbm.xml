@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zc.cris.onetonoe.primary">
+    <class name="Dept" table="DEPTS">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <!-- 表示当前一端的主键依赖于manager属性的主键 -->
+            <generator class="foreign" >
+            	<param name="property">manager</param>
+            </generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+        <!-- one-to-one的方式来映射1-1关联关系，需要为当前主键设置外键约束 -->
+       <one-to-one name="manager" class="Manager" constrained="true"></one-to-one>
+        
+    </class>
+</hibernate-mapping>
